@@ -3,3 +3,7 @@
 ################################################################################
 
 /obj
+/.vs/Power Monitoring/v16/Server/sqlite3/storage.ide-wal
+/.vs/Power Monitoring/v16/Server/sqlite3/storage.ide-shm
+/.vs/Power Monitoring/v16/Server/sqlite3/storage.ide
+/.vs/Power Monitoring/v16/Server/sqlite3/db.lock

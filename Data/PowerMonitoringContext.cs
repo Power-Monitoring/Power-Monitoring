@@ -1,5 +1,9 @@
+using System;
+using System.IO;
 using Power_Monitoring.Models;
 using Microsoft.EntityFrameworkCore;
+using Pomelo.EntityFrameworkCore.MySql;
+using Newtonsoft.Json.Linq;
 
 namespace Power_Monitoring.Data
 {
@@ -16,10 +20,14 @@ namespace Power_Monitoring.Data
     protected override void OnConfiguring(DbContextOptionsBuilder options)
     {
         // In order to be able to create migrations and update database:
-        if (!options.IsConfigured)
-        {
-            options.UseSqlServer("YourLocalConnectionStringShouldBeHere");
-        }
+        //if (!options.IsConfigured)
+        //{
+        //    var appconfig = JToken.Parse(
+        //        File.ReadAllText(Path.Combine(Environment.CurrentDirectory,
+        //            "appsettings.json")));
+        //    options.UseSqlServer("Server=.;Database=monitoring;user id=root;password=gall");
+        //}
+        options.UseMySql("server=localhost;database=monitoring;user=root;password=gall");
         base.OnConfiguring(options);
     }
     #endregion

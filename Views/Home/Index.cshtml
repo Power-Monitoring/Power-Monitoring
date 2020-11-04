@@ -1,12 +1,28 @@
-﻿@{
+﻿@model Power_Monitoring.Models.User
+
+@{
+    ViewBag.Title = "Details";
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Hello World</h1>
-    <button type="button">Click Me!</button>
-</div>
+<h2>Details</h2>
 
-<connectionStrings>
-    <add name="constr" connectionString="Data Source=localhost;port=3306;Initial Catalog=SampleDB;User Id=mudassar;password=pass@123"/>
-</connectionStrings>
+<div>
+    <h4>First User</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstName):
+            @Html.Label(Model.FirstName)
+        </dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.SecondName):
+            @Html.Label(Model.SecondName)
+        </dt>
+        @*Markup omitted for clarity.*@
+    </dl>
+</div>
+<p>
+
+    @Html.ActionLink("Back to List", "Index")
+</p>

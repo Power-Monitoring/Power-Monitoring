@@ -16,17 +16,20 @@ namespace Power_Monitoring.Controllers
     {
         private readonly ILogger<HomeController> _logger;
             public User viewModel = new User();
-            
 
-        public HomeController(ILogger<HomeController> logger)
+        private readonly PowerMonitoringContext context;
+
+
+        public HomeController(ILogger<HomeController> logger, PowerMonitoringContext context)
         {
             _logger = logger;
+            this.context = context;
         }
 
         public IActionResult Index()
         {
             Console.WriteLine(viewModel.FirstName);
-            return View();
+            return View(context.FavoriteBands.FirstOrDefault());
         }
 
         public IActionResult Privacy()

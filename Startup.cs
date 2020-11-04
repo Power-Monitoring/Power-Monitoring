@@ -10,7 +10,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Power_Monitoring.Data;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.SqlServer;
 
 
 namespace Power_Monitoring
@@ -27,7 +26,7 @@ namespace Power_Monitoring
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<PowerMonitoringContext>(options => options.UseSqlServer(Configuration.GetConnectionString("PowerMonitoringDatabase")));
+            services.AddDbContext<PowerMonitoringContext>(options => options.UseMySql(Configuration.GetConnectionString("PowerMonitoringDatabase")));
             services.AddControllersWithViews();
         }
 

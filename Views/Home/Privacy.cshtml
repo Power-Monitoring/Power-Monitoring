@@ -1,106 +1,56 @@
-﻿@*@page
-    @{
-        ViewData["Title"] = "Charts";
-    }*@
-<div class="container-fluid">
-    <div class="animated fadeIn">
-        <div class="card-columns cols-2">
-            <div class="card">
-                <div class="card-header">
-                    Line Chart
-                    <div class="card-header-actions">
-                        <a class="card-header-action" href="http://www.chartjs.org" target="_blank">
-                            <small class="text-muted">docs</small>
-                        </a>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <div class="chart-wrapper">
-                        <canvas id="canvas-1"></canvas>
-                    </div>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-header">
-                    Bar Chart
-                    <div class="card-header-actions">
-                        <a class="card-header-action" href="http://www.chartjs.org" target="_blank">
-                            <small class="text-muted">docs</small>
-                        </a>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <div class="chart-wrapper">
-                        <canvas id="canvas-2"></canvas>
-                    </div>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-header">
-                    Doughnut Chart
-                    <div class="card-header-actions">
-                        <a class="card-header-action" href="http://www.chartjs.org" target="_blank">
-                            <small class="text-muted">docs</small>
-                        </a>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <div class="chart-wrapper">
-                        <canvas id="canvas-3"></canvas>
-                    </div>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-header">
-                    Radar Chart
-                    <div class="card-header-actions">
-                        <a class="card-header-action" href="http://www.chartjs.org" target="_blank">
-                            <small class="text-muted">docs</small>
-                        </a>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <div class="chart-wrapper">
-                        <canvas id="canvas-4"></canvas>
-                    </div>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-header">
-                    Pie Chart
-                    <div class="card-header-actions">
-                        <a class="card-header-action" href="http://www.chartjs.org" target="_blank">
-                            <small class="text-muted">docs</small>
-                        </a>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <div class="chart-wrapper">
-                        <canvas id="canvas-5"></canvas>
-                    </div>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-header">
-                    Polar Area Chart
-                    <div class="card-header-actions">
-                        <a class="card-header-action" href="http://www.chartjs.org" target="_blank">
-                            <small class="text-muted">docs</small>
-                        </a>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <div class="chart-wrapper">
-                        <canvas id="canvas-6"></canvas>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-@section Scripts {
-    <script src="~/lib/chart.js/dist/Chart.min.js"></script>
-    <script src="~/lib/coreui/js/custom-tooltips.min.js"></script>
-    <script src="~/lib/coreui/js/charts.js"></script>
+﻿@{
+    Layout = null;
 }
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Charts</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.2/Chart.bundle.min.js"></script>
+    <script>
+
+            var barChartData =
+            {
+                "labels": [@Html.Raw(ViewBag.Data)],
+                "datasets": [
+                    {
+                        "label": "s1",
+                        "fillColor": "rgba(220,220,220,0.5)",
+                        "highlightFill": "rgba(220,220,220,0.75)",
+                        "highlightStroke": "rgba(220,220,220,1)",
+                        "strokeColor": "rgba(220,220,220,0.8)",
+                        "data": [@Html.Raw(ViewBag.ObjectName)]
+                    }
+                ]
+            };
+
+            window.onload = function () {
+                var ctx1 = document.getElementById("barcanvas").getContext("2d");
+                window.myBar = new Chart(ctx1,
+                    {
+                        type: 'bar',
+                        data: barChartData,
+                        options:
+                            {
+                                title:
+                                {
+                                    display: true,
+                                    text: "ProductWise Sales Count"
+                                },
+                                responsive: true,
+                                maintainAspectRatio: true
+                            }
+                    });
+            }
+    </script>
+</head>
+<body>
+    <div style="text-align: center">
+        <canvas id="barcanvas"></canvas>
+    </div>
+    <div style="text-align: center">
+        Disclaimer:- This data is for demo it is
+        not real data it wont relate to any company
+    </div>
+</body>
+</html>  

@@ -34,6 +34,8 @@ namespace Power_Monitoring.Controllers
 
         public IActionResult Privacy()
         {
+            ViewBag.Data = $"'{context.FavoriteBands.FirstOrDefault()?.FirstName}','{context.FavoriteBands.FirstOrDefault()?.SecondName}','Value2','Value3'"; //list of strings that you need to show on the chart. as mentioned in the example from c-sharpcorner
+            ViewBag.ObjectName = "'1','14','17','17'";
             return View();
         }
 

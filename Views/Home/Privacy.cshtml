@@ -1,4 +1,5 @@
-﻿@{
+﻿@model List<Power_Monitoring.Models.User>
+@{
     Layout = null;
 }
 <!DOCTYPE html>
@@ -9,19 +10,26 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.2/Chart.bundle.min.js"></script>
     <script>
 
-            var barChartData =
-            {
-                "labels": [@Html.Raw(ViewBag.Data)],
-                "datasets": [
+        var a = @Json.Serialize(Model.Select(m => m.FirstName));
+        var arrayValues = @Json.Serialize(Model.SelectMany(m => m.Fans).Select(f => f.FansCount));
+            var dataSet = [];
+            a.forEach (function (val,index,array) {
+                dataSet.push(
                     {
-                        "label": "s1",
+                        "label": val,
                         "fillColor": "rgba(220,220,220,0.5)",
                         "highlightFill": "rgba(220,220,220,0.75)",
                         "highlightStroke": "rgba(220,220,220,1)",
                         "strokeColor": "rgba(220,220,220,0.8)",
-                        "data": [@Html.Raw(ViewBag.ObjectName)]
-                    }
-                ]
+                        "data": [arrayValues[index]]
+                    });
+                console.log (val); 
+            });
+            var barChartData =
+            {
+                "labels": a,
+
+                "datasets": dataSet
             };
 
             window.onload = function () {

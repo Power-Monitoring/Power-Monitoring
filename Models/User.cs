@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Power_Monitoring.Models
@@ -8,5 +10,6 @@ namespace Power_Monitoring.Models
         public int Id { get; set; }
         public string FirstName { get; set; }
         public string SecondName { get; set; }
+        public ICollection<Fan> Fans { get; set; }
     }
 }

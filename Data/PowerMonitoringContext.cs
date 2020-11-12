@@ -15,18 +15,11 @@ namespace Power_Monitoring.Data
     }
 
     public DbSet<User> FavoriteBands { get; set; }
+    public DbSet<Fan> BandFans { get; set; }
 
-    #region OnConfiguring
-    protected override void OnConfiguring(DbContextOptionsBuilder options)
+        #region OnConfiguring
+        protected override void OnConfiguring(DbContextOptionsBuilder options)
     {
-        // In order to be able to create migrations and update database:
-        //if (!options.IsConfigured)
-        //{
-        //    var appconfig = JToken.Parse(
-        //        File.ReadAllText(Path.Combine(Environment.CurrentDirectory,
-        //            "appsettings.json")));
-        //    options.UseSqlServer("Server=.;Database=monitoring;user id=root;password=gall");
-        //}
         options.UseMySql("server=localhost;database=monitoring;user=root;password=gall");
         base.OnConfiguring(options);
     }

@@ -1,4 +1,4 @@
-﻿@model List<Power_Monitoring.Models.User>
+﻿@model Power_Monitoring.ViewModels.BandYearModel
 @{
     Layout = null;
 }
@@ -9,61 +9,24 @@
     <title>Charts</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.2/Chart.bundle.min.js"></script>
     <script>
-
-        var a = @Json.Serialize(Model.SelectMany(m => m.Fans).Select(f => f.Year));
-        var fullArrayValues = @Json.Serialize(Model);
-            var arrayValues = @Json.Serialize(Model.SelectMany(m => m.Fans));
-                var dataSet = [];
-        a.forEach(function (val, index, array) {
-                var fullArrayValues = @Json.Serialize(Model);
-                var fans = fullArrayValues
-                .filter(obj => {
-                    obj.fans = obj.fans.filter(el => el.year === val);
-                    return obj.fans.length > 0; // Technically just `return obj.list.length;` would work; I prefer the clarity of the comparison
-                });
-
-                fans.forEach (function (valInner,index1,array2) {
-                    dataSet.push(
-                        {
-                            "label": valInner.firstName,
-                            "fillColor": "rgba(220,220,220,0.5)",
-                            "highlightFill": "rgba(220,220,220,0.75)",
-                            "highlightStroke": "rgba(220,220,220,1)",
-                            "strokeColor": "rgba(220,220,220,0.8)",
-                            "data": arrayValues.filter(obj => {return obj.year === val }).map(a => a.fansCount)
-                        });
-                    console.log (valInner); 
-                });
+        var dataSet = [];
+        var bandModels = @Json.Serialize(Model.BandModels);
+        bandModels.forEach(function (bandModel, index1, array2) {
+                dataSet.push(
+                    {
+                        "label": bandModel.name,
+                        "fillColor": "rgba(220,220,220,0.5)",
+                        "highlightFill": "rgba(220,220,220,0.75)",
+                        "highlightStroke": "rgba(220,220,220,1)",
+                        "strokeColor": "rgba(220,220,220,0.8)",
+                        "data": bandModel.years
+                    });
+            console.log (bandModel.name); 
         });
-        var seen = {};
-        dataSet = dataSet.filter(function(entry) {
-            var previous;
 
-            // Have we seen this label before?
-            if (seen.hasOwnProperty(entry.label)) {
-                // Yes, grab it and add this data to it
-                previous = seen[entry.label];
-                previous.data.push(entry.data);
-
-                // Don't keep this entry, we've merged it into the previous one
-                return false;
-            }
-
-            // entry.data probably isn't an array; make it one for consistency
-            if (!Array.isArray(entry.data)) {
-                entry.data = [entry.data];
-            }
-
-            // Remember that we've seen it
-            seen[entry.label] = entry;
-
-            // Keep this one, we'll merge any others that match into it
-            return true;
-        });
-        console.log(dataSet);
             var barChartData =
             {
-                "labels": @Json.Serialize(Model.SelectMany(m => m.Fans).Select(f => f.Year)),
+                "labels": @Json.Serialize(Model.Years),
 
                 "datasets": dataSet
             };

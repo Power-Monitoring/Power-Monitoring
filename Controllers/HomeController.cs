@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
@@ -6,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Power_Monitoring.Models;
 using Power_Monitoring.Data;
-
+using Power_Monitoring.ViewModels;
 
 
 namespace Power_Monitoring.Controllers
@@ -33,9 +34,29 @@ namespace Power_Monitoring.Controllers
 
         public IActionResult Privacy()
         {
-            ViewBag.Data = $"'{context.FavoriteBands.FirstOrDefault()?.FirstName}','{context.FavoriteBands.FirstOrDefault()?.SecondName}','Value2','Value3'"; //list of strings that you need to show on the chart. as mentioned in the example from c-sharpcorner
-            ViewBag.ObjectName = "'1','14','17','17'";
-            return View(context.FavoriteBands.Include(user => user.Fans).ToList());
+            var bands = context.FavoriteBands.Include(user => user.Fans).ToList();
+            var years = bands.SelectMany(m => m.Fans).Select(f => f.Year).Distinct();
+            var viewYearModel = new BandYearModel()
+            {
+                BandModels = new List<BandModel>(),
+                Years = years.ToList()
+            };
+
+            foreach (var band in bands)
+            {
+                var model = new BandModel
+                {
+                    Name = $"{band.FirstName} {band.SecondName}", Years = new int[years.Count()].ToList()
+                };
+                for (var y = 0; y < years.Count(); y++)
+                {
+                    var year = years.ToArray()[y];
+                    model.Years[y] = band.Fans.Where(f => f.Year == year).Select(m => m.FansCount)
+                        .FirstOrDefault();
+                }
+                viewYearModel.BandModels.Add(model);
+            }
+            return View(viewYearModel);
         }
 
         public IActionResult About()

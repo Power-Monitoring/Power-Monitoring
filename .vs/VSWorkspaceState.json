@@ -9,6 +9,6 @@
     "\\wwwroot",
     "\\wwwroot\\base"
   ],
-  "SelectedNode": "\\Views\\Home\\Index.cshtml",
+  "SelectedNode": "\\wwwroot\\base\\breadcrumb.html",
   "PreviewInSolutionExplorer": false
 }

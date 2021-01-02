@@ -239,6 +239,7 @@ var mainChart = new Chart($('#main-chart'), {
     }
   }
 });
+
 var brandBoxChartLabels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
 var brandBoxChartOptions = {
   responsive: true,
@@ -264,6 +265,7 @@ var brandBoxChartOptions = {
   } // eslint-disable-next-line no-unused-vars
 
 };
+
 var brandBoxChart1 = new Chart($('#social-box-chart-1'), {
   type: 'line',
   data: {

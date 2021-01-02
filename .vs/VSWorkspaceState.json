@@ -2,13 +2,15 @@
   "ExpandedNodes": [
     "",
     "\\Views",
-    "\\Views\\Base",
-    "\\Views\\Example",
     "\\Views\\Home",
-    "\\Views\\Shared",
     "\\wwwroot",
-    "\\wwwroot\\base"
+    "\\wwwroot\\js",
+    "\\wwwroot\\js\\src",
+    "\\wwwroot\\lib",
+    "\\wwwroot\\lib\\coreui",
+    "\\wwwroot\\lib\\coreui\\js",
+    "\\wwwroot\\lib\\coreui\\js\\src"
   ],
-  "SelectedNode": "\\wwwroot\\base\\breadcrumb.html",
+  "SelectedNode": "\\Views\\Home\\Index.cshtml",
   "PreviewInSolutionExplorer": false
 }

@@ -257,6 +257,7 @@ const mainChart = new Chart($('#main-chart'), {
   }
 })
 
+
 const brandBoxChartLabels = ['January', 'February', 'March', 'April', 'May', 'June', 'July']
 
 const brandBoxChartOptions = {

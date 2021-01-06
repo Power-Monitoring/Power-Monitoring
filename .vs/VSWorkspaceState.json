@@ -3,13 +3,13 @@
     "",
     "\\Views",
     "\\Views\\Home",
+    "\\Views\\Shared",
     "\\wwwroot",
+    "\\wwwroot\\base",
     "\\wwwroot\\js",
-    "\\wwwroot\\js\\src",
     "\\wwwroot\\lib",
     "\\wwwroot\\lib\\coreui",
-    "\\wwwroot\\lib\\coreui\\js",
-    "\\wwwroot\\lib\\coreui\\js\\src"
+    "\\wwwroot\\lib\\coreui\\js"
   ],
   "SelectedNode": "\\Views\\Home\\Index.cshtml",
   "PreviewInSolutionExplorer": false

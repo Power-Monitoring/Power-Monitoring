@@ -1,4 +1,4 @@
-@charset "UTF-8";
+﻿@charset "UTF-8";
 /*!
  * CoreUI - Open Source Dashboard UI Kit
  * @version v2.0.26
@@ -11542,13 +11542,13 @@ canvas {
 }
 
 .sidebar {
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  padding: 0;
-  color: #fff;
-  background: #2f353a;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    padding: 0;
+    color: #fff;
+    background: #32afb5;
 }
 
 .sidebar .sidebar-close {

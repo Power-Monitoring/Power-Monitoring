@@ -3,14 +3,14 @@
     "",
     "\\Views",
     "\\Views\\Home",
-    "\\Views\\Shared",
     "\\wwwroot",
-    "\\wwwroot\\base",
+    "\\wwwroot\\css",
     "\\wwwroot\\js",
     "\\wwwroot\\lib",
     "\\wwwroot\\lib\\coreui",
+    "\\wwwroot\\lib\\coreui\\css",
     "\\wwwroot\\lib\\coreui\\js"
   ],
-  "SelectedNode": "\\Views\\Home\\Index.cshtml",
+  "SelectedNode": "\\Power Monitoring.csproj",
   "PreviewInSolutionExplorer": false
 }
